@@ -2,9 +2,8 @@ class JobsController < ApplicationController
   ## authenticate user to create new jobs
   before_action :authenticate_user!, only: [:new, :create]
 
-  ## authenticate worker to select a job
-  before_action :authenticate_worker!, only: [:update]
-
+  ## authenticate worker to select, work on, complete a job
+  before_action :authenticate_worker!, only: [:update, :mark_complete, :currently_working]
 
   def index
     @unclaimed_jobs = Job.where(pending: false).where(complete: false)
