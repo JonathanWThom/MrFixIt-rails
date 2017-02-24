@@ -626,6 +626,7 @@
         null,
         1,
         null,
+        null,
         null
       ],
       "/Users/JonathanThom/Desktop/MrFixIt-rails/app/models/application_record.rb": [
@@ -832,7 +833,7 @@
         1,
         null,
         1,
-        359,
+        361,
         null,
         null,
         null,
@@ -900,6 +901,6 @@
         null
       ]
     },
-    "timestamp": 1487971763
+    "timestamp": 1487974159
   }
 }
