@@ -48,7 +48,7 @@ class JobsController < ApplicationController
   def mark_complete
     @job = Job.find(params[:job_id])
 
-    if @job.update(complete: true, pending: false)
+    if @job.update(complete: true, pending: false, current: false)
       respond_to do |format|
         format.html { redirect_to worker_path(current_worker) }
         format.js
