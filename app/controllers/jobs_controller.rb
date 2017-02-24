@@ -8,7 +8,7 @@ class JobsController < ApplicationController
   expose :unclaimed_jobs, ->{ Job.where(pending: false).where(complete: false) }
   expose :processing_jobs, ->{ Job.where(pending: true).where(current: true).where(complete: false) }
   expose :claimed_jobs, ->{ Job.where(pending: true).where(current: false).where(complete: false) }
-  expose :completed_jobs, ->{ Job.where(complete: true) }
+  expose :complete_jobs, ->{ Job.where(complete: true) }
   expose :job
 
   def index

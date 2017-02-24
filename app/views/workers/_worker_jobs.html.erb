@@ -4,7 +4,7 @@
       <div class="card-content">
         <span class="card-title">Currently Working On</span>
         <ul>
-          <% @processing_jobs.each do |job| %>
+          <% claimed_jobs.where(worker_id: current_worker.id).each do |job| %>
             <h5><%= link_to job.title, job_path(job) %></h5>
             <hr>
           <% end %>
@@ -17,7 +17,7 @@
       <div class="card-content">
         <span class="card-title">Your Other Claimed Jobs</span>
         <ul>
-          <% @claimed_jobs.each do |job| %>
+          <% claimed_jobs.where(worker_id: current_worker.id).each do |job| %>
             <h5><%= link_to job.title, job_path(job) %></h5>
           <hr>
           <% end %>
@@ -33,7 +33,7 @@
       <div class="card-content">
         <span class="card-title">Completed Jobs</span>
         <ul>
-          <% @completed_jobs.each do |job| %>
+          <% complete_jobs.where(worker_id: current_worker.id).each do |job| %>
             <h5><%= link_to job.title, job_path(job) %></h5>
             <hr>
           <% end %>

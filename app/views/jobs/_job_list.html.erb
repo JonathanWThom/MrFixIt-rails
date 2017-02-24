@@ -57,7 +57,7 @@
       <div class="card-content">
         <span class="card-title">Completed Jobs</span>
         <ul>
-          <% completed_jobs.each do |job| %>
+          <% complete_jobs.each do |job| %>
           <h5><%= link_to job.title + " by " + job.worker.email, job_path(job) %></h5>
           <hr>
           <% end %>
