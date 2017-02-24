@@ -1,49 +1,68 @@
-<div class="card">
-  <div class="card-tabs">
-    <ul class="tabs tabs-fixed-width">
-      <li class="tab"><a class="active" href="#available_jobs">Available Jobs</a></li>
-      <li class="tab"><a href="#jobs_in_process">Jobs in Process</a></li>
-      <li class="tab"><a href="#other_claimed">Other Claimed Jobs</a></li>
-      <li class="tab"><a href="#completed">Completed Jobs</a></li>
-    </ul>
-  </div>
-  <div class="card-content grey lighten-4">
-    <div id="available_jobs">
-      <ul>
-        <% @unclaimed_jobs.each do |job| %>
-          <li><%= link_to job.title, job_path(job) %></li>
+<div class="row">
+  <div class="col s12 m5">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Unclaimed Jobs</span>
+        <ul>
+          <% @unclaimed_jobs.each do |job| %>
+          <h5><%= link_to job.title, job_path(job) %></h5>
           <% if worker_signed_in? %>
-            <%= link_to "Claim this job", job_path(job), :method => "patch", remote: true %>
+          <%= link_to "Claim this job", job_path(job), :method => "patch", remote: true, class: 'btn' %>
           <% end %>
-        <% end %>
-      </ul>
+          <hr>
+          <% end %>
+        </ul>
+      </div>
     </div>
-    <div id="jobs_in_process">
-      <ul>
-        <% @processing_jobs.each do |job| %>
-          <li><%= link_to job.title + " by " + job.worker.email, job_path(job) %></li>
+  </div>
+
+  <div class="col s12 m5">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Jobs in Process</span>
+        <ul>
+          <% @processing_jobs.each do |job| %>
+          <h5><%= link_to job.title + " by " + job.worker.email, job_path(job) %></h5>
           <% if current_worker && job.current == true && job.worker == current_worker %>
-            <%= link_to "Mark as Complete", job_mark_complete_path(job), :method => "patch", remote: true %>
+          <%= link_to "Mark as Complete", job_mark_complete_path(job), :method => "patch", remote: true, class: 'btn' %>
           <% end %>
-        <% end %>
-      </ul>
+          <hr>
+          <% end %>
+        </ul>
+      </div>
     </div>
-    <div id="other_claimed">
-      <ul>
-        <% @claimed_jobs.each do |job| %>
-          <li><%= link_to job.title + " by " + job.worker.email, job_path(job) %></li>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12 m5">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Other Claimed Jobs</span>
+        <ul>
+          <% @claimed_jobs.each do |job| %>
+          <h5><%= link_to job.title + " by " + job.worker.email, job_path(job) %></h5>
           <% if current_worker && job.worker == current_worker && !job.current %>
-            <%= link_to "I'm currently working on this job.", job_currently_working_path(job), :method => "patch", remote: true %>
+          <%= link_to "Mark as in process", job_currently_working_path(job), :method => "patch", remote: true, class: 'btn' %>
           <% end %>
-        <% end %>
-      </ul>
+          <hr>
+          <% end %>
+        </ul>
+      </div>
     </div>
-    <div id="completed">
-      <ul>
-        <% @completed_jobs.each do |job| %>
-          <li><%= link_to job.title + " by " + job.worker.email, job_path(job) %></li>
-        <% end %>
-      </ul>
+  </div>
+
+  <div class="col s12 m5">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Completed Jobs</span>
+        <ul>
+          <% @completed_jobs.each do |job| %>
+          <h5><%= link_to job.title + " by " + job.worker.email, job_path(job) %></h5>
+          <hr>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

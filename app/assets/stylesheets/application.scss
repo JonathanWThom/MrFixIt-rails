@@ -28,13 +28,20 @@ body {
   font-family: 'Merriweather', serif;
 }
 
- .navigation-menu ul {
-   list-style: none;
-   background-color: black;
-   text-align: center;
-   margin: 0;
-   width: 100%;
- }
+.navigation-menu ul {
+  list-style: none;
+  background-color: black;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+}
+
+.login-notice {
+  font-size: 1.2em;
+  display: inline-block;
+  color: white;
+  text-align: left;
+}
 
 .navigation-menu li {
   font-size: 1.2em;

@@ -15,14 +15,14 @@
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "See All Jobs", jobs_path %></li>
         <% if worker_signed_in? %>
-          <p class="login-notice"><em>You're signed into your <%= current_worker.email %> <b>worker account</b></em></p>
           <li><%= link_to "Worker Dashboard", worker_path(current_worker) %></li>
           <li><%= link_to "Log Out", destroy_worker_session_path, :method => :delete %></li>
+          <p class="login-notice">You're signed into your <%= current_worker.email %> worker account</p>
         <% elsif user_signed_in? %>
-          <p class="login-notice"><em>You're signed in as <%= current_user.email %></em></p>
           <li><%= link_to "Add Your Job", new_job_path %></li>
           <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
           <li><%= link_to "Register as a Worker", new_worker_registration_path %></li>
+          <p class="login-notice"><em>You're signed in as <%= current_user.email %></em></p>
         <% else %>
           <li><%= link_to "Register as a Worker", new_worker_registration_path %></li>
           <li><%= link_to "Register to Post Jobs", new_user_registration_path %></li>
