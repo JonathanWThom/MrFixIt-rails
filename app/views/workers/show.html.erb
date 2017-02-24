@@ -1,22 +1,5 @@
-<h1>Your jobs:</h1>
+<h2 class="center-align">Your Jobs</h2>
 
-<h3>Currently Working On</h3>
-<ul>
-  <% @current_jobs.each do |job| %>
-    <li><%= link_to job.title, job_path(job) %></li>
-  <% end %>
-</ul>
-
-<h3>Your Other Claimed Jobs</h3>
-<ul>
-  <% @claimed_jobs.each do |job| %>
-    <li><%= link_to job.title, job_path(job) %></li>
-  <% end %>
-</ul>
-
-<h3>Completed Jobs</h3>
-<ul>
-  <% @completed_jobs.each do |job| %>
-    <li><%= link_to job.title, job_path(job) %></li>
-  <% end %>
-</ul>
+<div class="worker_jobs">
+  <%= render 'worker_jobs' %>
+</div>
