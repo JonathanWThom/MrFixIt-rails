@@ -32,7 +32,11 @@ class JobsController < ApplicationController
 
   def update
     @job = Job.find(params[:id])
-
+    @unclaimed_jobs = Job.where(pending: false).where(complete: false)
+    @processing_jobs = Job.where(pending: true).where(current: true).where(complete: false)
+    @claimed_jobs = Job.where(pending: true).where(current: false).where(complete: false)
+    @completed_jobs = Job.where(complete: true)
+    
     if @job.update(pending: true, worker_id: current_worker.id)
       respond_to do |format|
         format.html { redirect_to worker_path(current_worker) }

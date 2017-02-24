@@ -1,0 +1,30 @@
+<h3>Unclaimed Jobs</h3>
+<ul>
+  <% @unclaimed_jobs.each do |job| %>
+    <li><%= link_to job.title, job_path(job) %></li>
+    <% if worker_signed_in? %>
+      <%= link_to "Claim this job", job_path(job), :method => "patch", remote: true %>
+    <% end %>
+  <% end %>
+</ul>
+
+<h3>Jobs In Process</h3>
+<ul>
+  <% @processing_jobs.each do |job| %>
+    <li><%= link_to job.title, job_path(job) %></li>
+  <% end %>
+</ul>
+
+<h3>Other Claimed Jobs</h3>
+<ul>
+  <% @claimed_jobs.each do |job| %>
+    <li><%= link_to job.title + " by " + job.worker.email, job_path(job) %></li>
+  <% end %>
+</ul>
+
+<h3>Completed Jobs</h3>
+<ul>
+  <% @completed_jobs.each do |job| %>
+    <li><%= link_to job.title, job_path(job) %></li>
+  <% end %>
+</ul>

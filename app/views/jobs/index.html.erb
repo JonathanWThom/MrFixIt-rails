@@ -1,29 +1,3 @@
 <h1>Jobs</h1>
 
-<h3>Unclaimed Jobs</h3>
-  <ul>
-    <% @unclaimed_jobs.each do |job| %>
-    <li><%= link_to job.title, job_path(job) %></li>
-    <% end %>
-  </ul>
-
-<h3>Jobs In Process</h3>
-  <ul>
-    <% @processing_jobs.each do |job| %>
-    <li><%= link_to job.title, job_path(job) %></li>
-    <% end %>
-  </ul>
-
-<h3>Other Claimed Jobs</h3>
-  <ul>
-    <% @claimed_jobs.each do |job| %>
-    <li><%= link_to job.title, job_path(job) %></li>
-    <% end %>
-  </ul>
-
-<h3>Completed Jobs</h3>
-  <ul>
-    <% @completed_jobs.each do |job| %>
-    <li><%= link_to job.title, job_path(job) %></li>
-    <% end %>
-  </ul>
+<div class="job-list"><%= render 'job_list' %></div>
