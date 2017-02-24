@@ -36,7 +36,7 @@ class JobsController < ApplicationController
     @processing_jobs = Job.where(pending: true).where(current: true).where(complete: false)
     @claimed_jobs = Job.where(pending: true).where(current: false).where(complete: false)
     @completed_jobs = Job.where(complete: true)
-    
+
     if @job.update(pending: true, worker_id: current_worker.id)
       respond_to do |format|
         format.html { redirect_to worker_path(current_worker) }
@@ -50,6 +50,10 @@ class JobsController < ApplicationController
 
   def mark_complete
     @job = Job.find(params[:job_id])
+    @unclaimed_jobs = Job.where(pending: false).where(complete: false)
+    @processing_jobs = Job.where(pending: true).where(current: true).where(complete: false)
+    @claimed_jobs = Job.where(pending: true).where(current: false).where(complete: false)
+    @completed_jobs = Job.where(complete: true)
 
     if @job.update(complete: true, pending: false, current: false)
       respond_to do |format|
@@ -64,6 +68,10 @@ class JobsController < ApplicationController
 
   def currently_working
     @job = Job.find(params[:job_id])
+    @unclaimed_jobs = Job.where(pending: false).where(complete: false)
+    @processing_jobs = Job.where(pending: true).where(current: true).where(complete: false)
+    @claimed_jobs = Job.where(pending: true).where(current: false).where(complete: false)
+    @completed_jobs = Job.where(complete: true)
 
     if @job.update(current: true)
       respond_to do |format|

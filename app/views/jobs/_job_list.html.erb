@@ -11,7 +11,10 @@
 <h3>Jobs In Process</h3>
 <ul>
   <% @processing_jobs.each do |job| %>
-    <li><%= link_to job.title, job_path(job) %></li>
+    <li><%= link_to job.title + " by " + job.worker.email, job_path(job) %></li>
+    <% if current_worker && job.current == true && job.worker == current_worker %>
+      <%= link_to "Mark as Complete", job_mark_complete_path(job), :method => "patch", remote: true %>
+    <% end %>
   <% end %>
 </ul>
 
@@ -19,12 +22,15 @@
 <ul>
   <% @claimed_jobs.each do |job| %>
     <li><%= link_to job.title + " by " + job.worker.email, job_path(job) %></li>
+    <% if current_worker && job.worker == current_worker && !job.current %>
+      <%= link_to "I'm currently working on this job.", job_currently_working_path(job), :method => "patch", remote: true %>
+    <% end %>
   <% end %>
 </ul>
 
 <h3>Completed Jobs</h3>
 <ul>
   <% @completed_jobs.each do |job| %>
-    <li><%= link_to job.title, job_path(job) %></li>
+    <li><%= link_to job.title + " by " + job.worker.email, job_path(job) %></li>
   <% end %>
 </ul>
