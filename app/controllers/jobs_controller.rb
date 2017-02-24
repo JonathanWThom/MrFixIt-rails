@@ -42,9 +42,6 @@ class JobsController < ApplicationController
         format.html { redirect_to worker_path(current_worker) }
         format.js
       end
-    else
-      render :show
-      flash[:notice] = "Something went wrong!"
     end
   end
 
@@ -60,9 +57,6 @@ class JobsController < ApplicationController
         format.html { redirect_to worker_path(current_worker) }
         format.js
       end
-    else
-      render :show
-      flash[:notice] = "Something went wrong!"
     end
   end
 
@@ -78,9 +72,6 @@ class JobsController < ApplicationController
         format.html { redirect_to worker_path(current_worker) }
         format.js
       end
-    else
-      render :show
-      flash[:notice] = "Something went wrong!"
     end
   end
 

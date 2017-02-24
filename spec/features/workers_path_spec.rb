@@ -10,6 +10,14 @@ describe 'the worker path' do
     expect(page).to have_content("You're signed into your worker@worker.com worker account")
   end
 
+  it 'will visit a worker\'s dashboard and show their jobs' do
+    worker = create(:worker)
+    job = create(:job, worker_id: worker.id, pending: true)
+    login_as(worker, :scope => :worker)
+    visit worker_path(worker)
+    expect(page).to have_content('Job 1')
+  end
+
   it 'will redirect a signed in worker' do
     worker = create(:worker)
     login_as(worker, :scope => :worker)
