@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 describe 'the jobs path' do
-  before() do
-    @job = create(:job)
-  end
   it 'will allow a user to post a job' do
     user = create(:user)
     login_as(user)
@@ -23,10 +20,29 @@ describe 'the jobs path' do
   end
 
   it 'will let a worker claim a job', js: true do
+    job = create(:job)
     worker = create(:worker)
     login_as(worker, :scope => :worker)
-    visit job_path(@job)
+    visit job_path(job)
     click_on 'Click here to claim it now.'
     expect(page).to have_content 'You have claimed this job'
+  end
+
+  it 'will let a worker say they are currently working on a job', js: true do
+    worker = create(:worker)
+    job = create(:job, pending: true, worker_id: worker.id)
+    login_as(worker, :scope => :worker)
+    visit job_path(job)
+    click_link 'I\'m currently working on this job'
+    expect(page).to have_content 'Mark as complete'
+  end
+
+  it 'will let a worker mark a job as complete', js: true do
+    worker = create(:worker)
+    job = create(:job, pending: true, current: true, worker_id: worker.id)
+    login_as(worker, :scope => :worker)
+    visit job_path(job)
+    click_link 'Mark as complete'
+    expect(page).to have_content 'This job is complete.'
   end
 end
