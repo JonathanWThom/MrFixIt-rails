@@ -1,6 +1,8 @@
 # Mr. Fix-It
 
-## About Us
+## About
+
+_This was an assignment where we had to make changes to an existing Ruby on Rails code base. Specifically, adding AJAX to actions, fixing bugs, and improving styling.
 
 _Mr. Fix-It is the one-stop-shop to crowd-source all your home repair needs. Need a fence repaired? Cabinets installed? Leaky pipe mended? Post the job on Mr.Fix-It. Then, independent handypeople, carpenters, plumbers, and more are able to view and claim jobs. It's like ride-sharing, but for home repairs!_
 
@@ -16,9 +18,6 @@ _Mr. Fix-It is the one-stop-shop to crowd-source all your home repair needs. Nee
 - `$ rails s` to start the rails server
 - Navigate to `localhost:3000` in your browser
 
-## Development Roadmap
-
-_Mr. Fix-It is still a work in progress. Here's what we've done so far, and what we'd still like to add:_
 
 ### Completed
 
@@ -29,16 +28,11 @@ _The following functionality is present in our application:_
 * Basic users may post their jobs to the jobs list.
 * Basic users have the option to sign up for a Worker account, which allows them to claim and complete jobs.
 * A worker can claim a job, and see it in their "Worker Dashboard"
-
-### Still Needed
-
-_The following must still be implemented:_
-
-* Workers must be able to claim a job **via an AJAX action**.
-* A worker must be able to mark which jobs they're actively working on **using AJAX**.
-* Workers must be able to mark jobs "complete" **using AJAX**.
-* Site needs to look more presentable and polished.
-* Unit and integration testing needs to be implemented throughout.
+* Workers can claim a job via an AJAX action.
+* A worker can mark which jobs they're actively working on using AJAX.
+* Workers can mark jobs "complete" using AJAX.
+* Site styling has improved.
+* Unit and integration testing are implemented throughout.
 
 ## License
 
