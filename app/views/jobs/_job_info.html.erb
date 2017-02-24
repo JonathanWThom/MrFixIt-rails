@@ -1,0 +1,20 @@
+<% if @job.worker == current_worker %>
+  <p>You have claimed this job.</p>
+  <% if @job.pending %>
+    <%= link_to "Mark as complete.", job_mark_complete_path(@job), :method => "patch", remote: true %>
+  <% end %>
+<% elsif @job.pending %>
+  <p><%= @job.worker.email %> has claimed this job</p>
+<% else  %>
+  <p>This job has not been claimed yet</p>
+<% end %>
+
+<% if @job.complete %>
+  <p>This job is complete</p>
+<% end %>
+
+<% if !current_worker %>
+  <%= link_to 'Sign in as a worker to claim it.', new_worker_session_path %>
+<% elsif current_worker && !@job.pending && !@job.complete %>
+  <%= link_to "Click here to claim it now.", job_path(@job), :method => "patch", remote: true %>
+<% end %>

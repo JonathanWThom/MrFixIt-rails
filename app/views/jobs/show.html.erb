@@ -3,10 +3,5 @@
 <h3><%= @job.description %></h3>
 
 <div class="job-owner">
-  <%= render 'job_owner'  %>
+  <%= render 'job_info'  %>
 </div>
-<% if !current_worker %>
-  <%= link_to 'Sign in as a worker to claim it.', new_worker_session_path %>
-<% else %>
-  <%= link_to "Click here to claim it now.", job_path(@job), :method => "patch", remote: true %>
-<% end %>
