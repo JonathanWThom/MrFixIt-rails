@@ -33,8 +33,8 @@ describe 'the jobs path' do
     job = create(:job, pending: true, worker_id: worker.id)
     login_as(worker, :scope => :worker)
     visit job_path(job)
-    click_link 'I\'m currently working on this job'
-    expect(page).to have_content 'Mark as complete'
+    click_link 'Mark as in process'
+    expect(page).to have_content 'MARK AS COMPLETE'
   end
 
   it 'will let a worker mark a job as complete', js: true do
