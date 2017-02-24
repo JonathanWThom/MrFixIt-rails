@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe 'the jobs path' do
+  before() do
+    @job = create(:job)
+  end
   it 'will allow a user to post a job' do
     user = create(:user)
     login_as(user)
@@ -18,15 +21,12 @@ describe 'the jobs path' do
     click_on 'Create Job'
     expect(page).to have_content 'Something went wrong!'
   end
-  # 
-  # it 'will let a worker claim a job', js: true do
-  #   job = create(:job)
-  #   worker = create(:worker, email: 'worker2@worker.com')
-  #   visit new_worker_session_path
-  #   fill_in 'Email', :with => 'worker2@worker.com'
-  #   fill_in 'Password', :with => '123123'
-  #   click_on 'Log in'
-  #   visit jobs_path
-  #   expect(page).to have_content 'I\'m currently working on this job.'
-  # end
+
+  it 'will let a worker claim a job', js: true do
+    worker = create(:worker)
+    login_as(worker, :scope => :worker)
+    visit job_path(@job)
+    click_on 'Click here to claim it now.'
+    expect(page).to have_content 'You have claimed this job'
+  end
 end
