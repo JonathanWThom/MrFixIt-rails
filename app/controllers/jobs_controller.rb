@@ -23,6 +23,7 @@ class JobsController < ApplicationController
     if @job.save
       redirect_to jobs_path
     else
+      flash[:notice] = "Something went wrong!"
       render :new
     end
   end
