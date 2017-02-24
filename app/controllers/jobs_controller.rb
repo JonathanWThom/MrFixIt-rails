@@ -32,7 +32,6 @@ class JobsController < ApplicationController
   end
 
   def update
-    ## fix?
     @job = Job.find(params[:id])
 
     if @job.update(pending: true, worker_id: current_worker.id)
@@ -50,6 +49,20 @@ class JobsController < ApplicationController
     @job = Job.find(params[:job_id])
 
     if @job.update(complete: true, pending: false)
+      respond_to do |format|
+        format.html { redirect_to worker_path(current_worker) }
+        format.js
+      end
+    else
+      render :show
+      flash[:notice] = "Something went wrong!"
+    end
+  end
+
+  def currently_working
+    @job = Job.find(params[:job_id])
+
+    if @job.update(current: true)
       respond_to do |format|
         format.html { redirect_to worker_path(current_worker) }
         format.js

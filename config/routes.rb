@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :jobs do
     patch :mark_complete
+    patch :currently_working
   end
 
   resources :workers, only: [:index, :show]
