@@ -23,19 +23,19 @@
           <p class="login-notice"><em>You're signed in as <%= current_user.email %></em></p>
           <li><%= link_to "Add Your Job", new_job_path %></li>
           <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-          <li><%= link_to "Register as a Worker", new_worker_path %></li>
+          <li><%= link_to "Register as a Worker", new_worker_registration_path %></li>
         <% else %>
-        <li><%= link_to "Register as a Worker", new_worker_path %></li>
-        <li><%= link_to "Register to Post Jobs", new_user_registration_path %></li>
-        <li><%= link_to "Log In as User", new_user_session_path %></li>
-        <li><%= link_to "Log In as Worker", new_worker_session_path %></li>
+          <li><%= link_to "Register as a Worker", new_worker_registration_path %></li>
+          <li><%= link_to "Register to Post Jobs", new_user_registration_path %></li>
+          <li><%= link_to "Log In as User", new_user_session_path %></li>
+          <li><%= link_to "Log In as Worker", new_worker_session_path %></li>
         <% end %>
       </ul>
     </div>
     <div class="content">
-    <div class="flash-messages">
-      <%= flash[:alert] %>
-      <h3><%= flash[:notice] %></h3>
+      <div class="flash-messages">
+        <h3><%= flash[:alert] %></h3>
+        <h3><%= flash[:notice] %></h3>
       </div>
       <%= yield %>
     </div>
