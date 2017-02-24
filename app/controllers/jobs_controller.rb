@@ -7,7 +7,8 @@ class JobsController < ApplicationController
 
 
   def index
-    @jobs = Job.all
+    @unclaimed_jobs = Job.where(pending: false).where(complete: false)
+    @claimed_jobs = Job.where
   end
 
   def new

@@ -1,7 +1,8 @@
 <h1>Jobs</h1>
 
-<ul>
-  <% @jobs.each do |job| %>
-  <li><%= link_to job.title, job_path(job) %></li>
-  <% end %>
-</ul>
+<h3>Unclaimed Jobs</h3>
+  <ul>
+    <% @unclaimed_jobs.each do |job| %>
+    <li><%= link_to job.title, job_path(job) %></li>
+    <% end %>
+  </ul>
