@@ -8,9 +8,6 @@ class WorkersController < ApplicationController
   expose :job
 
   def show
-    # @worker = current_worker
-    # @current_worker_claimed_jobs = Job.where(pending: true, complete: false, current: false)
-    # @current_worker_processing_jobs = Job.where(pending: true, complete: false, current: true)
-    # @current_workcompleted_jobs = Job.where(complete: true)
   end
+
 end

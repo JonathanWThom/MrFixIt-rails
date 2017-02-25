@@ -4,8 +4,9 @@
       <div class="card-content">
         <span class="card-title">Currently Working On</span>
         <ul>
-          <% claimed_jobs.where(worker_id: current_worker.id).each do |job| %>
+          <% processing_jobs.where(worker_id: current_worker.id).each do |job| %>
             <h5><%= link_to job.title, job_path(job) %></h5>
+            <%= link_to "Mark as complete", job_mark_complete_path(job), :method => "patch", remote: true, class: 'btn' %>
             <hr>
           <% end %>
         </ul>
@@ -19,6 +20,7 @@
         <ul>
           <% claimed_jobs.where(worker_id: current_worker.id).each do |job| %>
             <h5><%= link_to job.title, job_path(job) %></h5>
+            <%= link_to "Mark as in process", job_currently_working_path(job), :method => "patch", remote: true, class: 'btn' %>
           <hr>
           <% end %>
         </ul>
