@@ -7,7 +7,7 @@ describe 'the jobs path' do
     visit new_job_path
     fill_in 'Title', :with => 'Job 1'
     fill_in 'Description', :with => 'Job Description'
-    click_on 'Create Job'
+    click_on 'Submit'
     expect(page).to have_content 'Job 1'
   end
 
@@ -15,7 +15,7 @@ describe 'the jobs path' do
     user = create(:user)
     login_as(user)
     visit new_job_path
-    click_on 'Create Job'
+    click_on 'Submit'
     expect(page).to have_content 'Something went wrong!'
   end
 

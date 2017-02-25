@@ -15,26 +15,26 @@
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "See All Jobs", jobs_path %></li>
         <% if worker_signed_in? %>
-          <li><%= link_to "Worker Dashboard", worker_path(current_worker) %></li>
+          <li><%= link_to "Dashboard", worker_path(current_worker) %></li>
           <li><%= link_to "Log Out", destroy_worker_session_path, :method => :delete %></li>
-          <p class="login-notice">You're signed into your <%= current_worker.email %> worker account</p>
+          <p class="login-notice"><em>You're signed into your <%= current_worker.email %> worker account</em></p>
         <% elsif user_signed_in? %>
           <li><%= link_to "Add Your Job", new_job_path %></li>
           <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-          <li><%= link_to "Register as a Worker", new_worker_registration_path %></li>
+          <li><%= link_to "New Workers", new_worker_registration_path %></li>
           <p class="login-notice"><em>You're signed in as <%= current_user.email %></em></p>
         <% else %>
-          <li><%= link_to "Register as a Worker", new_worker_registration_path %></li>
-          <li><%= link_to "Register to Post Jobs", new_user_registration_path %></li>
-          <li><%= link_to "Log In as User", new_user_session_path %></li>
-          <li><%= link_to "Log In as Worker", new_worker_session_path %></li>
+          <li><%= link_to "New Users", new_user_registration_path %></li>
+          <li><%= link_to "New Workers", new_worker_registration_path %></li>
+          <li><%= link_to "User Log In", new_user_session_path %></li>
+          <li><%= link_to "Worker Log In", new_worker_session_path %></li>
         <% end %>
       </ul>
     </div>
     <div class="container">
       <div class="flash-messages">
-        <h3><%= flash[:alert] %></h3>
-        <h3><%= flash[:notice] %></h3>
+        <h3 class="center-align"><%= flash[:alert] %></h3>
+        <h3 class="center-align"><%= flash[:notice] %></h3>
       </div>
       <%= yield %>
     </div>
